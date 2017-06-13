@@ -1,7 +1,7 @@
 ---
 # Install required dependencies packages first
 
-
+# Prepare the upstart script
 - name: Prepare the conf file in /etc/init/ folder
   template:
     src: "templates/{{ service_name }}.conf.j2"
@@ -9,6 +9,7 @@
     mode: 0644
   become: yes
 
+# Start the service
 - name: Start myservice now, if not running
   service:
     name: "{{ service_name }}"
