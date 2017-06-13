@@ -15,4 +15,4 @@ sudo service myservice start|stop|status|restart
 sudo fuser -k [THE_RUNNING_PORT]/tcp
 ```
 - Service log file: /var/log/myservice.log
-- Process id logged at at: /var/run/myservice.pid
+- Process id logged at in: /var/run/myservice.pid

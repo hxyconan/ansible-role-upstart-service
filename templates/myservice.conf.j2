@@ -13,7 +13,7 @@ respawn
 respawn limit 5 30 
 
 script
-    echo $$ > /var/run/myservice.pid
+    echo $$ > /var/run/{{ service_name }}.pid
     exec [BIN_COMMAND] --webdriver={{ service_port }} --webdriver-logfile=/var/log/{{ service_name }}.log
 end script
 
@@ -22,6 +22,6 @@ pre-start script
 end script
 
 pre-stop script
-    rm /var/run/myservice.pid
+    rm /var/run/{{ service_name }}.pid
     echo "[`date`] {{ service_name }} driver Stopping" >> /var/log/{{ service_name }}.log
 end script
