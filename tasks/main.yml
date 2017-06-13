@@ -1,0 +1,15 @@
+---
+# Install required dependencies packages first
+
+
+- name: Prepare the conf file in /etc/init/ folder
+  template:
+    src: "templates/{{ service_name }}.conf.j2"
+    dest: "/etc/init/{{ service_name }}.conf"
+    mode: 0644
+  become: yes
+
+- name: Start myservice now, if not running
+  service:
+    name: "{{ service_name }}"
+    state: started

@@ -1,0 +1,4 @@
+---
+# Customized upstart service which will boot up automatically in system startup and auto restart when crashed
+service_name: "myservice"
+service_port: 2222

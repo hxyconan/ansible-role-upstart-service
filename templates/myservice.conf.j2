@@ -1,0 +1,28 @@
+# Script at /etc/init for start myservice at upstart
+
+description "My customized service running at port {{ service_port }}"
+author      "Bob Huang <email@example.com>"
+
+start on filesystem or runlevel [2345]
+stop on shutdown
+
+setuid root
+setgid root
+
+respawn
+respawn limit 5 30 
+
+script
+        echo $$ > /var/run/myservice.pid
+        exec phantomjs --webdriver={{ service_port }} --webdriver-logfile=/var/log/myservice.log
+end script
+
+pre-start script
+        echo "[`date`] myservice driver Starting" >> /var/log/myservice.log
+end script
+
+pre-stop script
+        rm /var/run/myservice.pid
+        echo "[`date`] myservice driver Stopping" >> /var/log/myservice.log
+end script
+
